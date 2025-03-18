@@ -4,7 +4,7 @@ Hi!
 
 I hope you're doing well.
 
-Thank you for this opportunity to participate in the interview task. Below, I have outlined my approach and implementation details.
+Thank you for this opportunity to participate in the interview task
 
 
 ## Requirements

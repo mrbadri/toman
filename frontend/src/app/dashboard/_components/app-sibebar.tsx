@@ -78,7 +78,7 @@ const data = {
         },
         {
           title: "Payment list",
-          url: "payments",
+          url: "/dashboard/payments",
         },
       ],
     },

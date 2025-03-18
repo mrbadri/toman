@@ -61,9 +61,9 @@ export const PaymentCardItemLoading = ({
               <Clock className="h-4 w-4" />
               Description
             </p>
-            <p className="text-sm text-foreground bg-muted/50 p-4 rounded-md border border-border">
+            <div className="text-sm text-foreground bg-muted/50 p-4 rounded-md border border-border">
               <Skeleton className="h-4 w-16" />
-            </p>
+            </div>
           </div>
         </div>
       </CardContent>

@@ -46,5 +46,4 @@ Thank you for this opportunity to participate in the interview task
 ## Deployment
 
 - **Front-end Address:** [http://185.204.168.45:4000/](http://185.204.168.45:4000/)  
-  or [http://toman.pixelgenius.ir/](http://toman.pixelgenius.ir/)
 - **Back-end Address:** [http://185.204.168.45:9000/](http://185.204.168.45:9000/)

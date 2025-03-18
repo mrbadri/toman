@@ -1,0 +1,49 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: self-hosted
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build Docker Images using Docker Compose
+        run: |
+          sudo docker-compose build
+
+      - name: Tag Backend and Frontend Images
+        run: |
+          sudo docker tag toman-backend-app mrbadri/toman-backend:latest
+          sudo docker tag toman-frontend-app mrbadri/toman-frontend:latest
+
+      - name: Push Docker Images to Docker Hub
+        run: |
+          echo "${{ secrets.DOCKER_TOKEN }}" | sudo docker login -u mrbadri --password-stdin
+          sudo docker push mrbadri/toman-backend:latest
+          sudo docker push mrbadri/toman-frontend:latest
+
+  deploy:
+    runs-on: self-hosted
+    needs: build
+    steps:
+      - name: Pull and Restart Backend & Frontend Containers
+        run: |
+          sudo docker pull mrbadri/toman-backend:latest
+          sudo docker pull mrbadri/toman-frontend:latest
+
+          sudo docker stop toman-backend-app || true
+          sudo docker stop toman-frontend-app || true
+
+          sudo docker rm toman-backend-app || true
+          sudo docker rm toman-frontend-app || true
+
+          sudo docker run -d --name toman-backend-app -p 9000:3000 mrbadri/toman-backend:latest
+          sudo docker run -d --name toman-frontend-app -p 4000:3000 mrbadri/toman-frontend:latest

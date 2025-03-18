@@ -58,6 +58,8 @@ Please submit:
 2. Add the following GitHub username as a collaborators to your repository: `mtahabasiri` , `alieabbasi`.
 3. Instructions on how to run the frontend project.
 
+If you have any questions, feel free to reach out via email at: r.hatamy@toman.ir.
+
 ---
 
 🚀 Good luck! We’re excited to see your work.

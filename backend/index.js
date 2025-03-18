@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors');
 const app = express();
 const port = 8000;
 
@@ -69,6 +70,13 @@ const simulateError = () => {
     return false;
 };
 
+app.use(cors({
+    origin: "*", 
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    allowedHeaders: ["Content-Type", "Authorization"]
+}));
+
+
 app.get('/payments', async (req, res) => {
     await simulateLoading();
 
@@ -87,11 +95,13 @@ app.get('/payments', async (req, res) => {
     }
 
     if (type) {
-        filteredResults = filteredResults.filter(payment => payment.type === type);
+        const typeArray = type.split(",");
+        filteredResults = filteredResults.filter(payment => typeArray.includes(payment.type));
     }
 
     if (status) {
-        filteredResults = filteredResults.filter(payment => payment.status === status);
+        const statusArray = status.split(",");
+        filteredResults = filteredResults.filter(payment => statusArray.includes(payment.status));
     }
 
     const startIndex = (page - 1) * limit;
